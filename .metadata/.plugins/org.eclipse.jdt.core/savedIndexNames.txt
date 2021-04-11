@@ -12,7 +12,6 @@ INDEX VERSION 1.131+C:\Users\Andrew\Desktop\expense_tracker_app\.metadata\.plugi
 661053486.index
 4195276751.index
 471492707.index
-1965174767.index
 3744810587.index
 3946635712.index
 2407915037.index
@@ -48,8 +47,8 @@ INDEX VERSION 1.131+C:\Users\Andrew\Desktop\expense_tracker_app\.metadata\.plugi
 3410102341.index
 1411550209.index
 2620519467.index
-3018411529.index
 260545848.index
+3018411529.index
 4253232022.index
 3771879033.index
 4215540835.index
