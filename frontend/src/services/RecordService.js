@@ -6,6 +6,9 @@ class RecordService {
     getRecords() {
         return axios.get(RECORDS_BASIC_URL);
     }
+    addRecord(record) {
+        return axios.post(RECORDS_BASIC_URL,record)
+    }
 
 }
 

@@ -1,5 +1,6 @@
 import s from './AddRecordModal.module.css';
 import * as React from "react";
+import RecordService from "../../../services/RecordService";
 
 const AddRecordModal = (props) => {
     const [amount,setAmount] = React.useState(0);
@@ -20,7 +21,7 @@ const AddRecordModal = (props) => {
                 amount,category,date,commentary,record_type: transactionType
             }
             clearState()
-            console.log(record)
+             RecordService.addRecord(record)
             props.closeModal();
         }
 
@@ -44,7 +45,7 @@ const AddRecordModal = (props) => {
                         <option>Other</option>
                     </select>
                     <label htmlFor="date">Date</label>
-                    <input type="date" id='date' required onSelect={(e) => setDate(e.target.value)}/>
+                    <input type="date" id='date' required onSelect={(e) => setDate(new Date(e.target.value).toLocaleDateString())}/>
                     <label htmlFor="commentary">commentary</label>
                     <textarea name="commentary" id="commentary" cols="30" rows="10" className={s.textArea} onChange={(e) => setCommentary(e.target.value)}/>
                     <div>
