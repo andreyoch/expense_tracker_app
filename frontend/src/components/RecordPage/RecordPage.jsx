@@ -1,20 +1,26 @@
 import React, {Component,useEffect} from 'react';
 import RecordService from "../../services/RecordService";
+import AddRecordModal from "./AddRecordModal/AddRecordModal";
 
 
  const RecordPage = () => {
      const [records,setRecords] = React.useState([]);
+     const[isAddRecordModalShow,setAddRecordModalShow] = React.useState(false);
 
      useEffect(() => {
-         RecordService.getRecords().then((response) => {
-             setRecords(response.data);
-         })
-     })
-
+             RecordService.getRecords().then((response) => {
+                 setRecords(response.data);
+             })
+     },[])
+           const  closeAddRecordModal = () => {
+         setAddRecordModalShow(false)
+           }
 
              return (
                  <div>
-                     <h2 className='text-center'>Employee list</h2>
+                     <h2 className='text-center'>Records</h2>
+                    <button onClick={() => setAddRecordModalShow(true)}> Show modal</button>
+                     <AddRecordModal show={isAddRecordModalShow} closeModal={closeAddRecordModal}/>
                      <div className='row'>
                          <table className='table table-striped table-bordered'>
                              <thead>
