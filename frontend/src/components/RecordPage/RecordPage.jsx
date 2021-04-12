@@ -22,8 +22,9 @@ import s from './RecordPage.module.css'
                    setRecords(response.data);
                })
            }
-           const deleteRecord = (id) => {
-                RecordService.deleteRecord(id);
+           const deleteRecord = (e,id) => {
+         const recordHtmlElement = e.target.parentElement;
+                RecordService.deleteRecord(id).then( () => recordHtmlElement.remove());
            }
 
              return (
@@ -51,7 +52,7 @@ import s from './RecordPage.module.css'
                                          <td>{r.category}</td>
                                          <td>{r.date}</td>
                                          <td>{r.commentary}</td>
-                                         <td className={s.close} onClick={()=> deleteRecord(r.id)}>&times;</td>
+                                         <td className={s.close} onClick={(e)=> deleteRecord(e,r.id)}>&times;</td>
                                      </tr>
                                  )
                              }
