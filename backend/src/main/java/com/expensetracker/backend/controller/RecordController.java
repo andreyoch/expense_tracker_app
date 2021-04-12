@@ -1,10 +1,13 @@
 package com.expensetracker.backend.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,6 +53,19 @@ public class RecordController {
 			
 			Record updatedRecord = recordRepository.save(record);
 			return ResponseEntity.ok(updatedRecord);
+		}
+		
+		//Delete record by id
+		@DeleteMapping("/records/{id}")
+		public ResponseEntity<Map<String, Boolean>> deleteRecord(@PathVariable Long id){
+			Record record = recordRepository.findById(id)
+					.orElseThrow(() -> new ResourceNotFoundException("Record with id " + id + "not exist"));
+			recordRepository.delete(record);
+			Map <String,Boolean> response = new HashMap<>();
+			response.put("deleted", Boolean.TRUE);
+			return ResponseEntity.ok(response);
+			
+			
 			
 		}
 }

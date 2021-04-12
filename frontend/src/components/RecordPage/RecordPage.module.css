@@ -1,0 +1,7 @@
+.close {
+    font-size: 30px;
+}
+
+.close:hover {
+    color: red;
+}

@@ -1,6 +1,7 @@
 import React, {Component,useEffect} from 'react';
 import RecordService from "../../services/RecordService";
 import AddRecordModal from "./AddRecordModal/AddRecordModal";
+import s from './RecordPage.module.css'
 
 
  const RecordPage = () => {
@@ -20,6 +21,9 @@ import AddRecordModal from "./AddRecordModal/AddRecordModal";
                RecordService.getRecords().then((response) => {
                    setRecords(response.data);
                })
+           }
+           const deleteRecord = (id) => {
+                RecordService.deleteRecord(id);
            }
 
              return (
@@ -47,6 +51,7 @@ import AddRecordModal from "./AddRecordModal/AddRecordModal";
                                          <td>{r.category}</td>
                                          <td>{r.date}</td>
                                          <td>{r.commentary}</td>
+                                         <td className={s.close} onClick={()=> deleteRecord(r.id)}>&times;</td>
                                      </tr>
                                  )
                              }

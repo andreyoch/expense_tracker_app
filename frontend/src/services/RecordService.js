@@ -9,6 +9,9 @@ class RecordService {
     addRecord(record) {
         return axios.post(RECORDS_BASIC_URL,record)
     }
+    deleteRecord(id) {
+        return axios.delete(`${RECORDS_BASIC_URL}/${id}`)
+    }
 
 }
 
