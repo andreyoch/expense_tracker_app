@@ -7,21 +7,22 @@ const AddRecordModal = (props) => {
     const [category,setCategory] = React.useState('Shopping');
     const [date,setDate] = React.useState('11/04/2021');
     const [commentary,setCommentary] = React.useState('');
-    const [transactionType,setTransactionType] = React.useState('Income');
+    const [recordType,setRecordType] = React.useState('Income');
     if(props.show){
         const clearState = () => {
             setAmount(0);
-            setCategory('');
+            setCategory('Shopping');
             setDate('');
-            setCommentary('')
-            setTransactionType('');
+            setCommentary('');
+            setRecordType('Income')
         }
         const addRecord = () => {
             const record = {
-                amount,category,date,commentary,record_type: transactionType
+                amount,category,date,commentary,recordType
             }
             clearState()
-             RecordService.addRecord(record)
+             RecordService.addRecord(record).then(()=>props.updateRecordsList())
+            props.updateRecordsList();
             props.closeModal();
         }
 
@@ -35,24 +36,24 @@ const AddRecordModal = (props) => {
                     <label htmlFor="amount">Amount</label>
                     <input type="number" id='amount' required  onChange={(e) => setAmount(e.target.value)}/>
                     <label htmlFor="category">Category</label>
-                    <select name="category" id="category" onChange={(e) => console.log(e.target.value) }>
-                        <option selected>Groceries</option>
+                    <select name="category" id="category" onChange={(e) => setCategory(e.target.value) }>
+                        <option>Groceries</option>
                         <option>Entertainment</option>
                         <option>Restaurants</option>
                         <option>Health</option>
                         <option>Transport</option>
-                        <option>Shopping</option>
+                        <option selected>Shopping</option>
                         <option>Other</option>
                     </select>
                     <label htmlFor="date">Date</label>
-                    <input type="date" id='date' required onSelect={(e) => setDate(new Date(e.target.value).toLocaleDateString())}/>
+                    <input type="date" id='date' onSelect={(e) => setDate(new Date(e.target.value).toLocaleDateString())}/>
                     <label htmlFor="commentary">commentary</label>
                     <textarea name="commentary" id="commentary" cols="30" rows="10" className={s.textArea} onChange={(e) => setCommentary(e.target.value)}/>
                     <div>
-                        <label htmlFor="transaction_type">Transaction type</label>
-                        <select name="transaction_type" id="transaction_type" onSelect={(e) => setTransactionType(e.target.value)}>
+                        <div>Choose record type</div>
+                        <select name="transaction_type" id="transaction_type" onChange={(e) => setRecordType(e.target.value) }>
+                            <option selected>Income</option>
                             <option>Expense</option>
-                            <option selected >Income</option>
                         </select>
                     </div>
                 </div>

@@ -16,11 +16,17 @@ import AddRecordModal from "./AddRecordModal/AddRecordModal";
          setAddRecordModalShow(false)
            }
 
+           const updateRecordsList = () => {
+               RecordService.getRecords().then((response) => {
+                   setRecords(response.data);
+               })
+           }
+
              return (
                  <div>
                      <h2 className='text-center'>Records</h2>
                     <button onClick={() => setAddRecordModalShow(true)}> Show modal</button>
-                     <AddRecordModal show={isAddRecordModalShow} closeModal={closeAddRecordModal}/>
+                     <AddRecordModal show={isAddRecordModalShow} closeModal={closeAddRecordModal} updateRecordsList={updateRecordsList}/>
                      <div className='row'>
                          <table className='table table-striped table-bordered'>
                              <thead>
@@ -36,8 +42,8 @@ import AddRecordModal from "./AddRecordModal/AddRecordModal";
                              {
                                  records.map((r) =>
                                      <tr key={r.id}>
+                                         <td>{r.recordType}</td>
                                          <td>{r.amount}</td>
-                                         <td>{r.record_type}</td>
                                          <td>{r.category}</td>
                                          <td>{r.date}</td>
                                          <td>{r.commentary}</td>
