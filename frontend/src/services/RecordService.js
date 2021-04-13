@@ -12,6 +12,9 @@ class RecordService {
     deleteRecord(id) {
         return axios.delete(`${RECORDS_BASIC_URL}/${id}`)
     }
+    editRecord(id,record) {
+        return axios.put(`${RECORDS_BASIC_URL}/${id}`,record)
+    }
 
 }
 
