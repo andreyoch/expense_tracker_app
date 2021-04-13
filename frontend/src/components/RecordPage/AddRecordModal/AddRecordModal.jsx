@@ -46,7 +46,7 @@ const AddRecordModal = (props) => {
                         <option>Other</option>
                     </select>
                     <label htmlFor="date">Date</label>
-                    <input type="date" id='date' onSelect={(e) => setDate(new Date(e.target.value).toLocaleDateString())}/>
+                    <input type="date" id='date' onSelect={(e) => setDate(e.target.value)}/>
                     <label htmlFor="commentary">commentary</label>
                     <textarea name="commentary" id="commentary" cols="30" rows="10" className={s.textArea} onChange={(e) => setCommentary(e.target.value)}/>
                     <div>

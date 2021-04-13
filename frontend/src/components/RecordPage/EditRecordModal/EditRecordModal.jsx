@@ -5,7 +5,7 @@ import RecordService from "../../../services/RecordService";
 const EditRecordModal = (props) => {
     const [amount,setAmount] = React.useState(props.record.amount);
     const [category,setCategory] = React.useState(props.record.category);
-    const [date,setDate] = React.useState('11/04/2021');
+    const [date,setDate] = React.useState(props.record.date);
     const [commentary,setCommentary] = React.useState(props.record.commentary);
     const [recordType,setRecordType] = React.useState(props.record.recordType);
     const categories = ["Groceries","Entertainment","Restaurants","Health","Transport","Shopping","Other"]
@@ -38,8 +38,9 @@ const EditRecordModal = (props) => {
             props.closeEditRecordModal();
 
         }
-    if(props.isShow) {
+
         return (
+            <div>
             <div  className={s.modal} >
             <div className={s.modalContent}>
                 <form>
@@ -47,7 +48,7 @@ const EditRecordModal = (props) => {
                     <div className={s.modalRow}>
                         <h2>Edit Record Info</h2>
                         <label htmlFor="amount">Amount</label>
-                        <input type="number" id='amount' required onChange={updateAmountState}/>
+                        <input type="number" id='amount' value={amount} required onChange={updateAmountState}/>
                         <label htmlFor="category">Category</label>
                         <select name="category" id="category" onChange={updateCategoryState} >
                             {categories.map((c) => {
@@ -59,24 +60,28 @@ const EditRecordModal = (props) => {
                             })}
                         </select>
                         <label htmlFor="date">Date</label>
-                        <input type="date" id='date' onSelect={updateDateState}/>
+                        <input type="date" id='date' value={date} onChange={updateDateState}/>
                         <label htmlFor="commentary">commentary</label>
-                        <textarea name="commentary" id="commentary" cols="30" rows="10" className={s.textArea} onChange={updateCommentaryState}/>
+                        <textarea name="commentary" id="commentary" cols="30" rows="10" value={commentary === null ? "" : commentary} className={s.textArea} onChange={updateCommentaryState}/>
                         <div>
                             <div>Choose record type</div>
                             <select name="transaction_type" id="transaction_type" onChange={updateRecordTypeState} >
-                                {recordTypes.map((r) => <option>{r}</option>)}
+                                {recordTypes.map((r) => {
+                                    if(r === recordType) {
+                                        return <option selected>{r}</option>
+                                    } else {
+                                        return <option>{r}</option>
+                                    }
+                                })}
                             </select>
                         </div>
                     </div>
                 </form>
                 <button type='submit' onClick={updateRecordInfo}>EditRecord</button>
             </div>
-
+            </div>
         </div>)
-    } else {
-        return ""
-    }
+
 }
 
 export default EditRecordModal;

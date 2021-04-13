@@ -43,7 +43,7 @@ import EditRecordModal from "./EditRecordModal/EditRecordModal";
                      <h2 className='text-center'>Records</h2>
                     <button onClick={() => setAddRecordModalShow(true)}> Show modal</button>
                      <AddRecordModal show={isAddRecordModalShow} closeModal={closeAddRecordModal} updateRecordsList={updateRecordsList}/>
-                     <EditRecordModal  isShow={isEditRecordModalShow} record={recordToEdit} closeEditRecordModal={closeEditRecordModal} updateRecordsList={updateRecordsList} />
+                     {isEditRecordModalShow ? <EditRecordModal  isShow={isEditRecordModalShow} record={recordToEdit} closeEditRecordModal={closeEditRecordModal} updateRecordsList={updateRecordsList} /> : ""}
                      <div className='row'>
                          <table className='table table-striped table-bordered'>
                              <thead>
