@@ -17,6 +17,9 @@ const AddRecordModal = (props) => {
             setRecordType('Income')
         }
         const addRecord = () => {
+            if(amount === 0) {
+                console.log("please provide amount")
+            }
             const record = {
                 amount,category,date,commentary,recordType
             }

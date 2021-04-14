@@ -12,7 +12,6 @@ const EditRecordModal = (props) => {
     const recordTypes = ["Income","Expense"];
         const updateAmountState = (e) => {
             setAmount(e.target.value)
-            console.log(amount)
         }
         const updateCategoryState = (e) => {
             setCategory(e.target.value)
@@ -27,17 +26,22 @@ const EditRecordModal = (props) => {
             setRecordType  (e.target.value)
         }
         const updateRecordInfo = () => {
-            const record = {
-                id:props.record.id,
-                amount,
-                category,
-                date,
-                recordType,
-                commentary
-            }
-            RecordService.editRecord(record.id,record).then(() => props.updateRecordsList())
-            props.closeEditRecordModal();
+            if(amount === 0) {
+                console.log('Please provide amount')
+            } else {
 
+
+                const record = {
+                    id: props.record.id,
+                    amount,
+                    category,
+                    date,
+                    recordType,
+                    commentary
+                }
+                RecordService.editRecord(record.id, record).then(() => props.updateRecordsList())
+                props.closeEditRecordModal();
+            }
         }
 
         return (
