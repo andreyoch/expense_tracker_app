@@ -5,3 +5,11 @@
 .close:hover {
     color: red;
 }
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
+}
