@@ -32,7 +32,8 @@ const EditRecordModal = (props) => {
                 amount,
                 category,
                 date,
-                recordType
+                recordType,
+                commentary
             }
             RecordService.editRecord(record.id,record).then(() => props.updateRecordsList())
             props.closeEditRecordModal();
