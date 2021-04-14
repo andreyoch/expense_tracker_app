@@ -17,16 +17,19 @@ const AddRecordModal = (props) => {
             setRecordType('Income')
         }
         const addRecord = () => {
-            if(amount === 0) {
-                console.log("please provide amount")
+            if(amount <= 0) {
+                console.log("please provide correct amount")
+            } else if(date === '') {
+                console.log('please provide date')
+            } else {
+                const record = {
+                    amount, category, date, commentary, recordType
+                }
+                clearState()
+                RecordService.addRecord(record).then(() => props.updateRecordsList())
+                props.updateRecordsList();
+                props.closeModal();
             }
-            const record = {
-                amount,category,date,commentary,recordType
-            }
-            clearState()
-             RecordService.addRecord(record).then(()=>props.updateRecordsList())
-            props.updateRecordsList();
-            props.closeModal();
         }
 
     return (
@@ -49,7 +52,7 @@ const AddRecordModal = (props) => {
                         <option>Other</option>
                     </select>
                     <label htmlFor="date">Date</label>
-                    <input type="date" id='date' onSelect={(e) => setDate(e.target.value)}/>
+                    <input type="date" id='date' onChange={(e) => setDate(e.target.value)}/>
                     <label htmlFor="commentary">commentary</label>
                     <textarea name="commentary" id="commentary" cols="30" rows="10" className={s.textArea} onChange={(e) => setCommentary(e.target.value)}/>
                     <div>

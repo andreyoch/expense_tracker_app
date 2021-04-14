@@ -26,11 +26,9 @@ const EditRecordModal = (props) => {
             setRecordType  (e.target.value)
         }
         const updateRecordInfo = () => {
-            if(amount === 0) {
-                console.log('Please provide amount')
+            if(amount <= 0) {
+                console.log('Please provide correct amount')
             } else {
-
-
                 const record = {
                     id: props.record.id,
                     amount,
