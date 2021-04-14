@@ -11,6 +11,7 @@ const MainPage = () => {
     useEffect(() => {
         RecordService.getRecords().then((response) => {
             setRecords(response.data);
+
         })
     }, [])
 
@@ -22,7 +23,6 @@ const MainPage = () => {
                 categories.push(r.category);
             }
         })
-        setTimeout(() => setCategories(categories),100);
         return categories;
     }
 
