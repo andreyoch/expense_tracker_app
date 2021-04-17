@@ -50,15 +50,6 @@ const MainPage = (props) => {
             stroke: {
                 curve: 'straight'
             },
-
-            title: {
-                text: 'Account total balance trend',
-                align: 'left'
-            },
-            subtitle: {
-                text: 'Price Movements',
-                align: 'left'
-            },
             labels: props.dates,
             xaxis: {
                 type: 'datetime',

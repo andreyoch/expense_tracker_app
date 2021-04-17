@@ -105,10 +105,10 @@ const getRecordDates = (records) => {
 const getAccountBalanceByDate = (dates,records) => {
      const accountBalanceByDate = [];
      for(let i = 0; i < dates.length;i++) {
-         let accountAmount = 0;
+         let accountAmount = i === 0 ? 0 : accountBalanceByDate[i - 1];
          records.map((r) => {
              if(dates[i]===(new Date(r.date).getTime())) {
-                    if(r.type === 'Expense') {
+                    if(r.recordType === 'Expense') {
                         accountAmount -= r.amount;
                     } else {
                         accountAmount += r.amount
