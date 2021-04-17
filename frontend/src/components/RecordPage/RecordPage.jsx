@@ -5,14 +5,13 @@ import s from './RecordPage.module.css'
 import EditRecordModal from "./EditRecordModal/EditRecordModal";
 
 
-const RecordPage = () => {
-    const [records, setRecords] = React.useState([]);
+const RecordPage = (props) => {
     const [isAddRecordModalShow, setAddRecordModalShow] = React.useState(false);
     const [isEditRecordModalShow, setEditRecordModalShow] = React.useState(false)
     const [recordToEdit, setRecordToEdit] = React.useState({});
     useEffect(() => {
         RecordService.getRecords().then((response) => {
-            setRecords(response.data);
+            props.updateRecordsList(response.data);
         })
     }, [])
     const closeAddRecordModal = () => {
@@ -21,7 +20,7 @@ const RecordPage = () => {
 
     const updateRecordsList = () => {
         RecordService.getRecords().then((response) => {
-            setRecords(response.data);
+            props.updateRecordsList(response.data);
         })
     }
     const deleteRecord = (e, id) => {
@@ -39,7 +38,7 @@ const RecordPage = () => {
     }
     const getAccountStatus = () => {
         let accountSum = 0;
-        records.map((r) => {
+        props.records.map((r) => {
             if(r.recordType === 'Income') {
                 accountSum += r.amount;
             } else if (r.recordType === 'Expense') {
@@ -79,7 +78,7 @@ const RecordPage = () => {
                     </thead>
                     <tbody>
                     {
-                        records.map((r) =>
+                        props.records.map((r) =>
                             <tr key={r.id}>
                                 <td>{r.recordType}</td>
                                 <td>{r.amount}</td>
