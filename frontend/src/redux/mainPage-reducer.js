@@ -3,7 +3,7 @@
      records: []
  }
 
- const recordsReducer = (state= initialState,action) => {
+ const mainPageReducer = (state= initialState,action) => {
      switch (action.type) {
          case UPDATE_RECORDS_LIST: {
              return {
@@ -22,4 +22,4 @@
      records
  })
 
- export default recordsReducer;
+ export default mainPageReducer;

@@ -5,13 +5,14 @@ import {BrowserRouter, NavLink, Route} from "react-router-dom";
 import MainPage from "./components/MainPage/MainPage";
 import Header from "./components/Header/Header";
 import RecordPageContainer from "./components/RecordPage/RecordPageContainer";
+import MainPageContainer from "./components/MainPage/MainPageContainer";
 
 function App() {
   return (
 
       <BrowserRouter>
           <Header/>
-          <Route path={'/main'} render={() => <MainPage />}/>
+          <Route path={'/'} exact render={() => <MainPageContainer/>}/>
       <Route path={"/records"} render={() => <RecordPageContainer />}/>
       </BrowserRouter>
   );

@@ -1,8 +1,10 @@
 import recordsReducer from "./records-reducer";
 import {combineReducers, createStore} from "redux";
+import mainPageReducer from "./mainPage-reducer";
 
 let reducers = combineReducers({
-    recordsPage:recordsReducer
+    recordsPage:recordsReducer,
+    mainPage: mainPageReducer,
 });
 
 let store = createStore(reducers);

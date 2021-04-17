@@ -3,14 +3,14 @@ import RecordService from "../../services/RecordService";
 import {useEffect} from 'react';
 import * as React from "react";
 
-const MainPage = () => {
+const MainPage = (props) => {
     const [records,setRecords] = React.useState([]);
     const [spentAmountByCategories,setSpentAmountByCategories] = React.useState([1,1,2,3])
      const [categories,setCategories] = React.useState(['Shopping','Health','Cinema','Food',])
 
     useEffect(() => {
         RecordService.getRecords().then((response) => {
-            setRecords(response.data);
+            props.updateRecordsState(response.data);
 
         })
     }, [])
