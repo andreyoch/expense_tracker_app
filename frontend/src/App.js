@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import RecordPage from "./components/RecordPage/RecordPage";
 import {BrowserRouter, NavLink, Route} from "react-router-dom";
