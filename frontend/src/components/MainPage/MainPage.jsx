@@ -10,6 +10,8 @@ const MainPage = (props) => {
             props.updateRecordsState(response.data);
             props.getCategoriesAC();
             props.getSpendAmountByCategoryAC();
+            props.getRecordDatesAC();
+            props.getAccountBalanceByDateAC();
 
         })
     }, [])
@@ -57,7 +59,7 @@ const MainPage = (props) => {
                 text: 'Price Movements',
                 align: 'left'
             },
-            labels: [new Date('15 Apr 2021').getTime(),new Date('16 Apr 2021').getTime(),new Date('17 Apr 2021').getTime(),new Date('18 Apr 2021').getTime()],
+            labels: props.dates,
             xaxis: {
                 type: 'datetime',
             },
@@ -68,9 +70,9 @@ const MainPage = (props) => {
                 horizontalAlign: 'left'
             }
         }
-        const series = [{
-        name:'Account sum',
-            data: [1,2,3,4]
+        const AccountBalanceTrendSeries = [{
+        name:'Account Balance',
+            data: props.accountBalanceByDate
         }]
 
     return (<div>
@@ -81,7 +83,7 @@ const MainPage = (props) => {
         </div>
             <div className={s.chart}>
                 <h2>Account Balance trend</h2>
-                <ReactApexChart options={optionsAccountTotalBalanceTrendChart} series={series} type="area" width={380}/>
+                <ReactApexChart options={optionsAccountTotalBalanceTrendChart} series={AccountBalanceTrendSeries} type="area" width={380}/>
             </div>
         </div>
     </div>)

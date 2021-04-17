@@ -1,11 +1,15 @@
 const UPDATE_RECORDS_LIST = 'GET_RECORDS';
 const GET_CATEGORIES = 'GET_CATEGORIES';
 const GET_SPEND_AMOUNT_BY_CATEGORY = 'GET_SPEND_AMOUNT_BY_CATEGORY'
+const GET_RECORDS_DATE = 'GET_RECORDS_DATE';
+const GET_ACCOUNT_BALANCE_BY_DATE = 'GET_ACCOUNT_BALANCE_BY_DATE';
 
  const initialState = {
      records: [],
      categories: [],
-     spendAmountByCategories: []
+     spendAmountByCategories: [],
+     dates: [1,3],
+     accountBalanceByDate: []
  }
 
  const mainPageReducer = (state= initialState,action) => {
@@ -28,6 +32,18 @@ const GET_SPEND_AMOUNT_BY_CATEGORY = 'GET_SPEND_AMOUNT_BY_CATEGORY'
                  spendAmountByCategories: getSpendAmountByCategory(state.categories,state.records)
              }
          }
+         case GET_RECORDS_DATE: {
+             return {
+                 ...state,
+                 dates: getRecordDates(state.records)
+             }
+         }
+         case GET_ACCOUNT_BALANCE_BY_DATE: {
+             return {
+                 ...state,
+                 accountBalanceByDate: getAccountBalanceByDate(state.dates,state.records)
+             }
+         }
          default:
              return state;
      }
@@ -46,7 +62,12 @@ const GET_SPEND_AMOUNT_BY_CATEGORY = 'GET_SPEND_AMOUNT_BY_CATEGORY'
 export const getSpendAmountByCategoryAC = () => ({
     type: GET_SPEND_AMOUNT_BY_CATEGORY
 })
-
+export const getRecordDatesAC = () => ({
+    type: GET_RECORDS_DATE,
+})
+export const getAccountBalanceByDateAC = () => ({
+    type: GET_ACCOUNT_BALANCE_BY_DATE
+})
  const getCategories = (records) => {
          const categories = [];
          records.map((r) => {
@@ -71,5 +92,31 @@ const getSpendAmountByCategory = (categories,records) => {
     }
     return spendAmounts;
 }
+const getRecordDates = (records) => {
+     const recordDates = [];
+     records.map((r) => {
+         if(!recordDates.includes(r.date)) {
+             recordDates.push(new Date(r.date).getTime())
+         }
+     })
+    return recordDates;
+}
 
+const getAccountBalanceByDate = (dates,records) => {
+     const accountBalanceByDate = [];
+     for(let i = 0; i < dates.length;i++) {
+         let accountAmount = 0;
+         records.map((r) => {
+             if(dates[i]===(new Date(r.date).getTime())) {
+                    if(r.type === 'Expense') {
+                        accountAmount -= r.amount;
+                    } else {
+                        accountAmount += r.amount
+                    }
+             }
+         })
+         accountBalanceByDate.push(accountAmount)
+     }
+     return accountBalanceByDate;
+}
  export default mainPageReducer;
