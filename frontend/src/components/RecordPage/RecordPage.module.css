@@ -13,3 +13,8 @@
 .negative {
     color: red;
 }
+
+.row {
+    display: flex;
+    justify-content: center;
+}

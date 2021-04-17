@@ -48,7 +48,7 @@ const MainPage = (props) => {
                 enabled: false
             },
             stroke: {
-                curve: 'straight'
+                curve: 'smooth'
             },
             labels: props.dates,
             xaxis: {
@@ -57,6 +57,7 @@ const MainPage = (props) => {
             yaxis: {
                 opposite: true
             },
+
             legend: {
                 horizontalAlign: 'left'
             }

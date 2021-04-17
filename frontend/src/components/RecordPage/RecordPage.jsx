@@ -65,15 +65,15 @@ const RecordPage = (props) => {
             {isEditRecordModalShow ? <EditRecordModal isShow={isEditRecordModalShow} record={recordToEdit}
                                                       closeEditRecordModal={closeEditRecordModal}
                                                       updateRecordsList={updateRecordsList}/> : ""}
-            <div className='row'>
-                <table className='table table-striped table-bordered'>
+            <div className={s.row}>
+                <table>
                     <thead>
                     <tr>
-                        <th>Record type</th>
-                        <th>Amount</th>
-                        <th>Category</th>
-                        <th>Date</th>
-                        <th>Commentary</th>
+                        <th scope="col">Record type</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Commentary</th>
                     </tr>
                     </thead>
                     <tbody>
