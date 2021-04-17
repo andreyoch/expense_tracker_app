@@ -50,7 +50,7 @@ export const getSpendAmountByCategoryAC = () => ({
  const getCategories = (records) => {
          const categories = [];
          records.map((r) => {
-             if(!categories.includes(r.category)) {
+             if(r.recordType === 'Expense' && !categories.includes(r.category)) {
                  categories.push(r.category);
              }
          })
