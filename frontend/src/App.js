@@ -11,8 +11,8 @@ function App() {
 
       <BrowserRouter>
           <Header/>
+          <Route path={'/main'} render={() => <MainPage />}/>
       <Route path={"/records"} render={() => <RecordPageContainer />}/>
-      <Route path={'/main'} render={() => <MainPage />}/>
       </BrowserRouter>
   );
 }
