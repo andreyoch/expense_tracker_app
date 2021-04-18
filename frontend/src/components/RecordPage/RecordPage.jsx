@@ -3,6 +3,7 @@ import RecordService from "../../services/RecordService";
 import AddRecordModal from "./AddRecordModal/AddRecordModal";
 import s from './RecordPage.module.css'
 import EditRecordModal from "./EditRecordModal/EditRecordModal";
+import TableCSVExporter from "../../IO/export/TableCSVExporter";
 
 
 const RecordPage = (props) => {
@@ -14,6 +15,10 @@ const RecordPage = (props) => {
             props.updateRecordsList(response.data);
         })
     }, [])
+    const exportToCSV = (e) => {
+        const tableElement = e.target.parentElement
+         new TableCSVExporter(tableElement,false);
+    }
     const closeAddRecordModal = () => {
         setAddRecordModalShow(false)
     }
@@ -91,7 +96,9 @@ const RecordPage = (props) => {
                         )
                     }
                     </tbody>
+                    <button onClick={(e) => exportToCSV(e)}>Export to CSV file</button>
                 </table>
+
             </div>
         </div>
     );
