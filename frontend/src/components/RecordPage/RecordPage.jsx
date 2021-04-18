@@ -16,8 +16,19 @@ const RecordPage = (props) => {
         })
     }, [])
     const exportToCSV = (e) => {
-        const tableElement = e.target.parentElement
-         new TableCSVExporter(tableElement,false);
+        const dataTable = e.target.parentElement
+        const exporter = new TableCSVExporter(dataTable);
+        const csvOutput = exporter.convertToCSV();
+        const csvBlob = new Blob([csvOutput], { type: "text/csv" });
+        const blobUrl = URL.createObjectURL(csvBlob);
+        const anchorElement = document.createElement("a");
+        anchorElement.href = blobUrl;
+        anchorElement.download = "table-export.csv";
+        anchorElement.click();
+        setTimeout(() => {
+            URL.revokeObjectURL(blobUrl);
+        }, 500);
+
     }
     const closeAddRecordModal = () => {
         setAddRecordModalShow(false)
