@@ -1,11 +1,10 @@
 
 import './App.css';
-import RecordPage from "./components/RecordPage/RecordPage";
 import {BrowserRouter, NavLink, Route} from "react-router-dom";
-import MainPage from "./components/MainPage/MainPage";
 import Header from "./components/Header/Header";
 import RecordPageContainer from "./components/RecordPage/RecordPageContainer";
 import MainPageContainer from "./components/MainPage/MainPageContainer";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
