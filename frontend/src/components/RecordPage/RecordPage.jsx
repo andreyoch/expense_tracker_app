@@ -4,6 +4,7 @@ import AddRecordModal from "./AddRecordModal/AddRecordModal";
 import s from './RecordPage.module.css'
 import EditRecordModal from "./EditRecordModal/EditRecordModal";
 import TableCSVExporter from "../../IO/export/TableCSVExporter";
+import csvtojson from "../../IO/import/CSVToJSON";
 
 
 const RecordPage = (props) => {
@@ -29,6 +30,9 @@ const RecordPage = (props) => {
             URL.revokeObjectURL(blobUrl);
         }, 500);
 
+    }
+    const onSelectImageHandler = (files) => {
+        csvtojson()
     }
     const closeAddRecordModal = () => {
         setAddRecordModalShow(false)
@@ -108,6 +112,7 @@ const RecordPage = (props) => {
                     }
                     </tbody>
                     <button onClick={(e) => exportToCSV(e)}>Export to CSV file</button>
+                    <input type="file" onClick={(e) => onSelectImageHandler(e.target.files)  }/>
                 </table>
 
             </div>
