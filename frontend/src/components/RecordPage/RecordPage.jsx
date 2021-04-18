@@ -4,7 +4,7 @@ import AddRecordModal from "./AddRecordModal/AddRecordModal";
 import s from './RecordPage.module.css'
 import EditRecordModal from "./EditRecordModal/EditRecordModal";
 import TableCSVExporter from "../../IO/export/TableCSVExporter";
-import csvtojson from "../../IO/import/CSVToJSON";
+
 
 
 const RecordPage = (props) => {
@@ -32,7 +32,6 @@ const RecordPage = (props) => {
 
     }
     const onSelectImageHandler = (files) => {
-        csvtojson()
     }
     const closeAddRecordModal = () => {
         setAddRecordModalShow(false)
