@@ -56,6 +56,8 @@ const AddRecordModal = (props) => {
                         <option>Health</option>
                         <option>Transport</option>
                         <option selected>Shopping</option>
+                        <option>Salary</option>
+                        <option>Investments</option>
                         <option>Other</option>
                     </select>
                     <label htmlFor="date">Date</label>

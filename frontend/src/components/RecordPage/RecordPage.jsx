@@ -24,7 +24,7 @@ const RecordPage = (props) => {
         const blobUrl = URL.createObjectURL(csvBlob);
         const anchorElement = document.createElement("a");
         anchorElement.href = blobUrl;
-        anchorElement.download = "table-export.csv";
+        anchorElement.download = `Records by ${new Date().toLocaleDateString()}.csv`;
         anchorElement.click();
         setTimeout(() => {
             URL.revokeObjectURL(blobUrl);
