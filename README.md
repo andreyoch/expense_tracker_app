@@ -1,20 +1,20 @@
-#Expense management system
-##Used technologies
-##Frontend:
+<h1>Expense management system</h1>
+<h2>Used technologies</h2>
+<h3>Frontend</h3>:
 <ul>
 <li>React (with Hooks)</li>
 <li>Redux</li>
 <li>React router</li>
 </ul>
 
-##Backend:
+<h3>Backend</h3>:
 <ul>
 <li>Java 11</li>
 <li>Spring boot</li>
 <li>Hibernate</li>
 <li>MySQL</li>
 
-##How to set up project
+<h3>How to set up project</h3>
 <ol>
 <li>Download and install java 11 or higher <a href="https://www.java.com/en/">Link to download </a></li>
 <li>Download and install Node.js(v11 or higher) <a href="https://nodejs.org/en/download/">Link to download </a></li>
