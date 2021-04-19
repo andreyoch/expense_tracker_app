@@ -17,7 +17,7 @@ const RecordPage = (props) => {
         })
     }, [])
     const exportToCSV = (e) => {
-        const dataTable = e.target.parentElement
+        const dataTable = document.querySelector('table');
         const exporter = new TableCSVExporter(dataTable);
         const csvOutput = exporter.convertToCSV();
         const csvBlob = new Blob([csvOutput], { type: "text/csv" });
@@ -76,16 +76,21 @@ const RecordPage = (props) => {
     return (
         <div>
             <h2 className='text-center'>Records</h2>
+            <div className={'text-center'}>
             <div>State of an account</div>
             <div style={accountStateStyles}>{getAccountStatus()}</div>
-            <button onClick={() => setAddRecordModalShow(true)}> Show modal</button>
+            </div>
+            <div>
+            <button onClick={() => setAddRecordModalShow(true)} className={s.addRecordButton}> Add record</button>
+                <button onClick={() => exportToCSV()}>Export to CSV file</button>
+            </div>
             <AddRecordModal show={isAddRecordModalShow} closeModal={closeAddRecordModal}
                             updateRecordsList={updateRecordsList}/>
             {isEditRecordModalShow ? <EditRecordModal isShow={isEditRecordModalShow} record={recordToEdit}
                                                       closeEditRecordModal={closeEditRecordModal}
                                                       updateRecordsList={updateRecordsList}/> : ""}
             <div className={s.row}>
-                <table>
+                <table className={'table'}>
                     <thead>
                     <tr>
                         <th scope="col">Record type</th>
@@ -110,8 +115,6 @@ const RecordPage = (props) => {
                         )
                     }
                     </tbody>
-                    <button onClick={(e) => exportToCSV(e)}>Export to CSV file</button>
-                    <input type="file" onClick={(e) => onSelectImageHandler(e.target.files)  }/>
                 </table>
 
             </div>
