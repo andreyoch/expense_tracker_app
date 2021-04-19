@@ -45,3 +45,9 @@
 .textArea {
     resize: none;
 }
+
+.addRecordButton ,.editRecordButton {
+    margin-left: 660px;
+    margin-top: 50px;
+}
+

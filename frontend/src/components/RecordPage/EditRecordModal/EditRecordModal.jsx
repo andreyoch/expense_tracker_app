@@ -8,6 +8,7 @@ const EditRecordModal = (props) => {
     const [date,setDate] = React.useState(props.record.date);
     const [commentary,setCommentary] = React.useState(props.record.commentary);
     const [recordType,setRecordType] = React.useState(props.record.recordType);
+    const [isWarningShow,setWarningShow] = React.useState(false);
     const categories = ["Groceries","Entertainment","Restaurants","Health","Transport","Shopping","Other"]
     const recordTypes = ["Income","Expense"];
         const updateAmountState = (e) => {
@@ -27,7 +28,10 @@ const EditRecordModal = (props) => {
         }
         const updateRecordInfo = () => {
             if(amount <= 0) {
-                console.log('Please provide correct amount')
+                setWarningShow(true)
+                setTimeout(()=> {
+                    setWarningShow(false)
+                },2000)
             } else {
                 const record = {
                     id: props.record.id,
@@ -80,7 +84,8 @@ const EditRecordModal = (props) => {
                         </div>
                     </div>
                 </form>
-                <button type='submit' onClick={updateRecordInfo}>EditRecord</button>
+                <button type='submit' onClick={updateRecordInfo} className={s.editRecordButton}>EditRecord</button>
+                 {isWarningShow ? <div className={"alert alert-danger"}>Amount must be greater than zero</div> : ""}
             </div>
             </div>
         </div>)

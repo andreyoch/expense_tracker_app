@@ -1,6 +1,7 @@
 import s from './AddRecordModal.module.css';
 import * as React from "react";
 import RecordService from "../../../services/RecordService";
+import warning from "react-redux/lib/utils/warning";
 
 const AddRecordModal = (props) => {
     const [amount,setAmount] = React.useState(0);
@@ -8,6 +9,7 @@ const AddRecordModal = (props) => {
     const [date,setDate] = React.useState('11/04/2021');
     const [commentary,setCommentary] = React.useState('');
     const [recordType,setRecordType] = React.useState('Income');
+    const [isWarningShow,setWarningShow] = React.useState(false)
     if(props.show){
         const clearState = () => {
             setAmount(0);
@@ -18,16 +20,21 @@ const AddRecordModal = (props) => {
         }
         const addRecord = () => {
             if(amount <= 0) {
-                console.log("please provide correct amount")
+                setWarningShow(true)
+                setTimeout(()=> {
+                    setWarningShow(false)
+                },2000)
             } else if(date === '') {
-                console.log('please provide date')
+                setWarningShow(true)
+                setTimeout(()=> {
+                    setWarningShow(false)
+                },2000)
             } else {
                 const record = {
                     amount, category, date, commentary, recordType
                 }
                 clearState()
                 RecordService.addRecord(record).then(() => props.updateRecordsList())
-                props.updateRecordsList();
                 props.closeModal();
             }
         }
@@ -64,7 +71,8 @@ const AddRecordModal = (props) => {
                     </div>
                 </div>
                 </form>
-                <button type='submit' onClick={addRecord}>Add Record</button>
+                {isWarningShow ? <div className={"alert alert-danger"}>Please fill all fields</div> : ""}
+                <button type='submit' onClick={addRecord} className={s.addRecordButton}>Add Record</button>
             </div>
 
         </div>
