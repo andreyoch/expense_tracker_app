@@ -33,7 +33,7 @@ public class RecordController {
 		return recordRepository.findAll();
 	}
 	
-	// create employee rest api
+	// create new record
 		@PostMapping("/records")
 		public Record createRecord(@RequestBody Record record) {
 			return recordRepository.save(record);
